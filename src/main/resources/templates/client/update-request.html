@@ -1,0 +1,167 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ChangePassword</title>
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/css/jasny-bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" th:href="@{/css/material-kit.css}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons.css}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/extras/animate.css}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{/extras/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/extras/owl.theme.css}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" th:href="@{/extras/settings.css}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" th:href="@{/css/slicknav.css}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/red.css}" media="screen"/>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="logo-menu">
+        <div class="main-navigation" th:insert="~{/components/navbar :: navbar1}"></div>
+
+        <!-- Off Canvas Navigation -->
+        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+            <!--- Off Canvas Side Menu -->
+            <div class="close" data-toggle="offcanvas" data-target=".navmenu">
+                <i class="ti-close"></i>
+            </div>
+            <h3 class="title-menu">All Pages</h3>
+            <ul class="nav navmenu-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index-02.html">Home Page 2</a></li>
+                <li><a href="index-03.html">Home Page 3</a></li>
+                <li><a href="index-04.html">Home Page 4</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="job-page.html">Job Page</a></li>
+                <li><a href="job-details.html">Job Details</a></li>
+                <li><a href="resume.html">Resume Page</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="pricing.html">Pricing Tables</a></li>
+                <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                <li><a href="browse-categories.html">Browse Categories</a></li>
+                <li><a href="add-resume.html">Add Resume</a></li>
+                <li><a href="manage-resumes.html">Manage Resumes</a></li>
+                <li><a href="job-alerts.html">Job Alerts</a></li>
+                <li><a href="post-job.html">Add Job</a></li>
+                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                <li><a href="manage-applications.html">Manage Applications</a></li>
+                <li><a href="browse-resumes.html">Browse Resumes</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="my-account.html">Login</a></li>
+            </ul><!--- End Menu -->
+        </div> <!--- End Off Canvas Side Menu -->
+        <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms"
+             data-toggle="offcanvas" data-target=".navmenu">
+            <p><i class="ti-files"></i> All Pages</p>
+        </div>
+    </div>
+</div>
+<!-- Header Section End -->
+
+<!-- Page Header Start -->
+<div class="page-header purchase" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title " style="color: #ff6470">Change password</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content" class="my-account" >
+    <div class="container">
+        <div class="row"  >
+            <div class="col-sm-12 col-md-9 col-md-offset-2">
+                <div class="job-alerts-item" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;" >
+                    <h3 class="alerts-title">Update request</h3>
+                    <form class="form" th:method="POST" th:action="@{/update-request}" th:object="${requestForm}">
+                        <input type="hidden" th:value="${request.getId()}" th:name="requestId">
+                        <div class="form-group is-empty">
+                            <label class="control-label">Title *</label>
+                            <input th:name="title" th:id="title" class="form-control" type="text" name="title"
+                                   placeholder="I am looking for..." th:value="${request.getTitle()}">
+                            <span class="material-input"></span>
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Once you place your order, when would you like your service
+                                delivered (DAY)?*</label>
+                            <input  th:name="deliveryTime" th:id="deliveryTime" onchange="deliveredTimeVerify()"
+                                   class="form-control" type="text"
+                                   placeholder="Enter number of days" th:value="${request.getDeliveryTime()}">
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">What is your budget for this service($)?*</label>
+                            <input style="width: 30%" th:name="budget" th:id="budget" onchange="budgetVerify()"
+                                   class="form-control" type="text" placeholder="Your budget is" th:value="${request.getBudget()}">
+                        </div>
+
+                        <div class="form-group is-empty">
+                            <label class="control-label">Content *</label>
+                            <textarea th:name="content" id="editor" cols="30" rows="30"
+                                      placeholder="My requests are..." th:utext="${request.getContent()}"></textarea>
+                            <span class="material-input"></span>
+                            <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-common">OK</button>
+                        <input value="0" type="hidden"  data-glyphicon="0">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="~{/components/footer :: footer}"></th:block>
+
+<script>
+    ClassicEditor.create(document.querySelector('#editor')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+
+<script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material-kit.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.parallax.js}"></script>
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.slicknav.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.counterup.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jasny-bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/form-validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/contact-form-script.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.revolution.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.tools.min.js}"></script>
+</body>
+</html>

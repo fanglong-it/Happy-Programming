@@ -1,0 +1,190 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Programing</title>
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/css/jasny-bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" th:href="@{/css/material-kit.css}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons.css}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/extras/animate.css}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{/extras/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/extras/owl.theme.css}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" th:href="@{/extras/settings.css}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" th:href="@{/css/slicknav.css}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/red.css}" media="screen"/>
+</head>
+<body>
+<div class="header">
+    <div class="logo-menu">
+        <div class="main-navigation" th:insert="~{/components/navbar :: navbar1}"></div>
+
+        <!-- Off Canvas Navigation -->
+        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+            <!--- Off Canvas Side Menu -->
+            <div class="close" data-toggle="offcanvas" data-target=".navmenu">
+                <i class="ti-close"></i>
+            </div>
+            <h3 class="title-menu">All Pages</h3>
+            <ul class="nav navmenu-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index-02.html">Home Page 2</a></li>
+                <li><a href="index-03.html">Home Page 3</a></li>
+                <li><a href="index-04.html">Home Page 4</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="job-page.html">Job Page</a></li>
+                <li><a href="job-details.html">Job Details</a></li>
+                <li><a href="resume.html">Resume Page</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="pricing.html">Pricing Tables</a></li>
+                <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                <li><a href="browse-categories.html">Browse Categories</a></li>
+                <li><a href="add-resume.html">Add Resume</a></li>
+                <li><a href="manage-resumes.html">Manage Resumes</a></li>
+                <li><a href="job-alerts.html">Job Alerts</a></li>
+                <li><a href="post-job.html">Add Job</a></li>
+                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                <li><a href="manage-applications.html">Manage Applications</a></li>
+                <li><a href="browse-resumes.html">Browse Resumes</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="my-account.html">Login</a></li>
+            </ul><!--- End Menu -->
+        </div> <!--- End Off Canvas Side Menu -->
+        <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms"
+             data-toggle="offcanvas" data-target=".navmenu">
+            <p><i class="ti-files"></i> All Pages</p>
+        </div>
+    </div>
+</div>
+<!-- Header Section End -->
+
+<!-- Page Header Start -->
+<div class="page-header purchase" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title " style="color: #ff6470">Your list request</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content" class="my-account">
+    <div class="container">
+        <div class="row">
+            <th:block th:insert="~{/components/inner-box :: inner-box}"></th:block>
+
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="job-alerts-item">
+                    <h3 class="alerts-title">List requests</h3>
+                    <div class="alerts-list">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Date</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Requests</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Mentor</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Actions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:each="request : ${listRequests}" class="alerts-content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h3 th:utext="*{request.getCreatedDate()}"></h3>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 th:utext="*{request.getTitle()}"></h3>
+                            </div>
+                            <div class="col-md-3" th:if="*{request.getStatus()==0}">
+                                <a th:href="@{/mentor/suggestion(requestId=${request.getId()})}"><h3>Find mentors</h3></a>
+                            </div>
+                            <div class="col-md-3" th:if="*{request.getStatus()==1}">
+                                <a th:href="@{/mentor-detail(id=*{request.getMentorId().getId()})}"><h3
+                                        th:utext="*{request.getMentorId().getFullName()}"></h3></a><br>
+                            </div>
+                            <div class="col-md-3" th:if="*{request.getStatus()==3}">
+                                <a th:href="@{/mentor-detail(id=*{request.getMentorId().getId()})}"><h3
+                                        th:utext="*{request.getMentorName()}"></h3></a><br>
+                                <a th:href="@{/contact(id=${request.getMentorId().getId()})}" type="button">Contact</a>
+                                <a th:onclick="'javascript:displayRate(\'' + ${request.mentorId.id} + '\');'" th:id="${request.getMentorId().getId()}">Rate</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a th:href="@{delete-request(id=${request.getId()})}"><input th:if="*{request.getStatus()==0}" value="Delete" type="button"></a>
+                                <a th:href="@{update-request(id=${request.getId()})}"><input th:if="*{request.getStatus()==0}" value="Update" type="button"></a>
+                                <a th:href="@{cancel-request(id=${request.getId()})}"><input th:if="*{request.getStatus()==1}" value="Cancel" type="button"></a>
+                                <a th:href="@{/details}" th:if="*{request.getStatus()==3}"  type="button">View detail</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <ul class="pagination">
+                        <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a>
+                        </li>
+                        <li class="page-item" th:each="pageNumber : ${pageNumbers}"
+                            th:classappend="${pageNumber==currentPage}?active">
+                            <a class="page-link" th:href="@{/list-requests(pageNumber=${pageNumber},status=${status})}"
+                               th:text="${pageNumber}">1</a>
+                        </li>
+                        <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:insert="~{/components/footer :: footer}"></th:block>
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+
+    <div class="modal-content" id="rate-comment">
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material-kit.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.parallax.js}"></script>
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.slicknav.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.counterup.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jasny-bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/form-validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/contact-form-script.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.revolution.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.tools.min.js}"></script>
+</body>
+</html>

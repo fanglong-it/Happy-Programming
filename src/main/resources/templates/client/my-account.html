@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="Jobboard">
+
+    <title>JobBoard - Bootstrap HTML5 Job Portal Template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/css/jasny-bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" th:href="@{/css/material-kit.css}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons.css}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/extras/animate.css}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{/extras/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/extras/owl.theme.css}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" th:href="@{/extras/settings.css}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" th:href="@{/css/slicknav.css}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/red.css}" media="screen"/>
+
+
+</head>
+
+<body>
+<!-- Header Section Start -->
+<div class="alert alert-success set-alert" role="alert" th:style="${alert} ? 'display: block' : 'display: none' ">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success!</strong> You have been registered in successfully!<br>
+    <p>Please check your email to verify your account.</p>
+</div>
+<div class="header">
+    <div class="logo-menu">
+        <div class="main-navigation" th:insert="~{/components/navbar :: navbar1}"></div>
+
+        <!-- Off Canvas Navigation -->
+        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+            <!--- Off Canvas Side Menu -->
+            <div class="close" data-toggle="offcanvas" data-target=".navmenu">
+                <i class="ti-close"></i>
+            </div>
+            <h3 class="title-menu">All Pages</h3>
+            <ul class="nav navmenu-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index-02.html">Home Page 2</a></li>
+                <li><a href="index-03.html">Home Page 3</a></li>
+                <li><a href="index-04.html">Home Page 4</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="job-page.html">Job Page</a></li>
+                <li><a href="job-details.html">Job Details</a></li>
+                <li><a href="resume.html">Resume Page</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="pricing.html">Pricing Tables</a></li>
+                <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                <li><a href="browse-categories.html">Browse Categories</a></li>
+                <li><a href="add-resume.html">Add Resume</a></li>
+                <li><a href="manage-resumes.html">Manage Resumes</a></li>
+                <li><a href="job-alerts.html">Job Alerts</a></li>
+                <li><a href="post-job.html">Add Job</a></li>
+                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                <li><a href="manage-applications.html">Manage Applications</a></li>
+                <li><a href="browse-resumes.html">Browse Resumes</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="my-account.html">Login</a></li>
+            </ul><!--- End Menu -->
+        </div> <!--- End Off Canvas Side Menu -->
+        <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms"
+             data-toggle="offcanvas" data-target=".navmenu">
+            <p><i class="ti-files"></i> All Pages</p>
+        </div>
+    </div>
+</div>
+<!-- Header Section End -->
+
+<!-- Page Header Start -->
+<section id="counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-briefcase"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Mentors</h2>
+                        <h1 class="counter">120500</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-user"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Members</h2>
+                        <h1 class="counter">202317</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-write"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Online</h2>
+                        <h1 class="counter">32012</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Header End -->
+
+<div id="content" class="my-account">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-6 cd-user-modal">
+                <div class="my-account-form">
+                    <ul class="cd-switcher">
+                        <li><a id="login-form" onclick="function login_selected() {
+                              document.getElementById('login-form').className='selected';
+                              document.getElementById('cd-login').className='is-selected';
+                              document.getElementById('signup-form').className='';
+                              document.getElementById('cd-signup').className='';
+                              document.getElementById('cd-reset-password').className='';
+                          }
+                          login_selected()" class="selected" href="#0">LOGIN</a></li>
+                        <li><a id="signup-form" onclick="function signup_selected() {
+                              document.getElementById('login-form').className='';
+                              document.getElementById('cd-login').className='';
+                              document.getElementById('signup-form').className='selected';
+                              document.getElementById('cd-signup').className='is-selected';
+                              document.getElementById('cd-reset-password').className='';
+                          }
+                          signup_selected()" href="#0" class="">REGISTER</a></li>
+                    </ul>
+
+                    <div id="cd-login" class="is-selected">
+                        <div class="page-login-form">
+                            <form role="form" class="login-form" method="POST" th:action="@{/login}">
+                                <p th:if="${param.error}" class="error danger" style="color: red">Invalid email or
+                                    password</p>
+                                <div class="form-group is-empty">
+                                    <div class="input-icon">
+                                        <i class="ti-user"></i>
+                                        <input type="text" id="sender-email" class="form-control" name="email"
+                                               placeholder="Your email">
+                                    </div>
+                                    <span class="material-input"></span></div>
+                                <div class="form-group is-empty">
+                                    <div class="input-icon">
+                                        <i class="ti-lock"></i>
+                                        <input type="password" class="form-control" placeholder="Password"
+                                               name="password">
+                                    </div>
+                                    <span class="material-input"></span></div>
+                                <button class="btn btn-common log-btn" type="submit">Login</button>
+                                <div class="checkbox-item">
+                                    <div class="checkbox">
+                                        <label for="rememberme" class="rememberme">
+                                            <input name="rememberme" id="rememberme" value="forever"
+                                                   type="checkbox"><span class="check"></span> Remember
+                                            Me</label>
+                                    </div>
+                                    <p class="cd-form-bottom-message"><a onclick="function forgetPassword() {
+                                     document.getElementById('cd-reset-password').className='is-selected';
+                                     document.getElementById('login-form').className='selected';
+                                     document.getElementById('cd-login').className='';
+                                }
+                                forgetPassword()" href="#0">Forgot password?</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="cd-signup" class="">
+                        <div class="page-login-form register">
+                            <form role="form" class="login-form" method="POST" th:action="@{/process_register}">
+                                <div class="form-group is-empty">
+                                    <div class="input-icon">
+                                        <i class="ti-user"></i>
+                                        <input type="text" class="form-control" name="fullName" placeholder="Full name"
+                                               required>
+                                    </div>
+                                    <span class="material-input"></span>
+                                </div>
+                                <p id="message-1"></p>
+                                <div class="form-group is-empty">
+                                    <div class="input-icon">
+                                        <i class="ti-email"></i>
+                                        <input id="email-check" onchange="checkEmailForRegister()" type="email" class="form-control"
+                                               name="email" placeholder="Email"
+                                               required>
+                                    </div>
+                                    <span class="material-input"></span>
+                                </div>
+                                <div class="form-group is-empty">
+                                    <div class="input-icon">
+                                        <i class="ti-lock"></i>
+                                        <input type="password" class="form-control" name="password"
+                                               placeholder="Password">
+                                    </div>
+                                    <span class="material-input"></span>
+                                </div>
+                                <div class="form-group is-empty">
+                                    <div class="input-icon">
+                                        <i class="ti-lock"></i>
+                                        <input type="password" class="form-control" placeholder="Repeat Password">
+                                    </div>
+                                    <span class="material-input"></span></div>
+                                <button  class="btn btn-common log-btn" type="submit">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="page-login-form" id="cd-reset-password">
+                        <p class="cd-form-message">Lost your password? Please enter your email address. You will receive
+                            a link to create a new password.</p>
+                        <div class="cd-form" >
+                            <div class="form-group is-empty">
+                                <p id="message-2"></p>
+                                <div class="input-icon">
+                                    <i class="ti-email"></i>
+                                    <input id="email-change-password"  type="text" class="form-control" name="email" placeholder="Email">
+                                </div>
+                                <span class="material-input"></span>
+                            </div>
+
+                            <p class="fieldset">
+                                <button onclick="checkEmailForChangePass()" id="btn-change-password" class="btn btn-common log-btn" >Reset password</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer Section Start -->
+<th:block th:insert="~{/components/footer :: footer}"></th:block>
+
+<!-- Footer Section End -->
+
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+</a>
+
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Main JS  -->
+<script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material-kit.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.parallax.js}"></script>
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.slicknav.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.counterup.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jasny-bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/form-validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/contact-form-script.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.revolution.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.tools.min.js}"></script>
+
+</body>
+</html>

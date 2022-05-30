@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="Jobboard">
+
+    <title>Happy Programming</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/css/jasny-bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" th:href="@{/css/material-kit.css}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons.css}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/extras/animate.css}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{/extras/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/extras/owl.theme.css}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" th:href="@{/extras/settings.css}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" th:href="@{/css/slicknav.css}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/red.css}" media="screen" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+
+</head>
+
+<body>
+<!-- Header Section Start -->
+
+<div class="header">
+    <div class="logo-menu">
+        <div class="main-navigation" th:insert="~{/components/navbar :: navbar1}"></div>
+
+        <!-- Off Canvas Navigation -->
+        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+            <!--- Off Canvas Side Menu -->
+            <div class="close" data-toggle="offcanvas" data-target=".navmenu">
+                <i class="ti-close"></i>
+            </div>
+            <h3 class="title-menu">All Pages</h3>
+            <ul class="nav navmenu-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index-02.html">Home Page 2</a></li>
+                <li><a href="index-03.html">Home Page 3</a></li>
+                <li><a href="index-04.html">Home Page 4</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="job-page.html">Job Page</a></li>
+                <li><a href="job-details.html">Job Details</a></li>
+                <li><a href="resume.html">Resume Page</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="pricing.html">Pricing Tables</a></li>
+                <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                <li><a href="browse-categories.html">Browse Categories</a></li>
+                <li><a href="add-resume.html">Add Resume</a></li>
+                <li><a href="manage-resumes.html">Manage Resumes</a></li>
+                <li><a href="job-alerts.html">Job Alerts</a></li>
+                <li><a href="post-job.html">Add Job</a></li>
+                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                <li><a href="manage-applications.html">Manage Applications</a></li>
+                <li><a href="browse-resumes.html">Browse Resumes</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="my-account.html">Login</a></li>
+            </ul>
+            <!--- End Menu -->
+        </div>
+        <!--- End Off Canvas Side Menu -->
+        <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms" data-toggle="offcanvas" data-target=".navmenu">
+            <p><i class="ti-files"></i> All Pages</p>
+        </div>
+    </div>
+</div>
+<!-- Header Section End -->
+
+<!-- Page Header Start -->
+<div class="page-header purchase" data-stellar-background-ratio="0.5" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title " th:if="${cv == null}" style="color: #ff6470">Create your CV</h2>
+                    <h2 class="product-title " th:if="${cv != null}" style="color: #ff6470">Update your CV</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-9 col-md-offset-2">
+                <div class="page-ads box">
+                    <form class="form-ad" th:method="POST" th:action="@{/createCV}" th:object="${newCV}" onsubmit="return testValidCV()">
+                        <div class="form-group is-empty">
+                            <label class="control-label">Name</label>
+                            <input type="text" class="form-control" id="mentorName" name="mentorName" th:name="user.fullName" th:value="${session.userInformation.getFullName()}">
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty hidden" >
+                            <label class="control-label">Email</label>
+                            <input type="text" class="form-control" name="email" th:name="user.email" th:id="user.email" th:value="${session.userInformation.getEmail()}">
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Date of birth</label>
+                            <input type="text" class="form-control" name="dob" id="dob" onchange="testValidDate()" placeholder="dd/MM/yyyy" th:name="user.doB" th:value="${session.userInformation.getDoB()}">
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Title</label>
+                            <textarea class="form-control" id = "title" th:name="title" th:id="title" th:if="${cv != null}" th:utext="${cv.getTitle()}" maxlength="100" placeholder="I will do Java programming for you..."></textarea>
+                            <textarea class="form-control"  id = "title1" th:name="title" th:id="title" th:if="${cv == null}" maxlength="100" placeholder="I will do Java programming for you..."></textarea>
+
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Profession</label>
+                            <textarea class="form-control" id="profession" th:name="profession" th:id="profession" th:if="${cv != null}" th:utext="${cv.getProfession()}" ></textarea>
+                            <textarea class="form-control" id="profession1" th:name="profession" th:id="profession" th:if="${cv == null}" ></textarea>
+
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Introduction</label><br>
+                            <textarea name="description" id="introduction" cols="30" rows="30" class="form-control" th:name="introduction" th:id="introduction" th:if="${cv != null}" th:utext="${cv.getIntroduction()}" ></textarea>
+                            <textarea name="description" id="introduction1" cols="30" rows="30" class="form-control" th:name="introduction" th:id="introduction" th:if="${cv == null}" ></textarea>
+
+                            <span class="material-input"></span>
+                        </div>
+
+                        <div class="form-group is-empty">
+                            <label class="control-label">Achievement</label><br>
+                            <textarea name="achievement" cols="30" rows="30" class="form-control" th:name="achievement" th:id="achievement" th:if="${cv != null}" th:utext="${cv.getAchievement()}" ></textarea>
+                            <textarea name="achievement" cols="30" rows="30" class="form-control" th:name="achievement" th:id="achievement" th:if="${cv == null}" ></textarea>
+
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Phone</label>
+                            <input type="text" class="form-control" name="phone" id="phone" th:name="user.phone" th:id="user.phone" th:value="${session.userInformation.getPhone()}">
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Skills</label> <br>
+                                <input style="margin-left: 10px" th:field="*{skills}" type="checkbox" name="skills_CV" th:each="item : ${listSkills}" th:value="${item.id}" th:text="${item.skillName}"> <br>
+                            <span class="material-input"></span>
+                        </div>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<th:block th:insert="~{/components/footer :: footer}"></th:block>
+
+</body>
+<script>
+
+    ClassicEditor.create(document.querySelector('#profession')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+    ClassicEditor.create(document.querySelector('#introduction')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+    ClassicEditor.create(document.querySelector('#achievement')).then(eidt => {
+        console.log("da" + eidt);
+    })
+        .catch(error => {
+            console.error(error);
+        });
+
+</script>
+<script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material-kit.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.parallax.js}"></script>
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.slicknav.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.counterup.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jasny-bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/form-validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/contact-form-script.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.revolution.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.tools.min.js}"></script>
+</body>
+</html>

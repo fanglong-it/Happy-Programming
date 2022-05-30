@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div th:fragment="inner-box" class="col-md-4 col-sm-4 col-xs-12" >
+    <div class="right-sideabr" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;">
+        <div class="inner-box">
+            <h3 class="active">Manage Account</h3>
+            <ul class="lest item">
+                <li><a th:href="@{/user-profile}">My profile</a></li>
+                <li><a href="notifications.html">Notifications <span class="notinumber">2</span></a></li>
+                <li><a th:href="@{/change-password}">Change Password</a></li>
+            </ul>
+            <h3 th:if="${session.role == 'mentee' || session.role == 'mentorAndMentee'}">List requests</h3>
+            <ul class="lest item " th:if="${session.role == 'mentee' || session.role == 'mentorAndMentee'}">
+                <li><a th:href="@{/list-requests(status=0)}">Pending</a></li>
+                <li><a th:href="@{/list-requests(status=1)}">Active</a></li>
+                <li><a th:href="@{/list-requests(status=3)}">Approved</a></li>
+            </ul>
+            <h3 th:if="${session.role == 'mentorAndMentee'}">Manage requests invited to me</h3>
+            <ul class="lest item" th:if="${session.role == 'mentorAndMentee'}">
+                <li><a th:href="@{/invited-request-wait}">Waiting</a></li>
+                <li><a th:href="@{/invited-request-rejected}">Rejected</a></li>
+                <li><a th:href="@{/invited-request-approved}">Approved</a></li>
+            </ul>
+            <ul class="lest">
+                <li>
+                    <form th:action="@{/logout}" th:method="POST">
+                        <a><input style="color: black" type="submit" value="Logout"></a>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

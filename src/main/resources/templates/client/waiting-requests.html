@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="Jobboard">
+
+    <title>Happy Programming</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/css/jasny-bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" th:href="@{/css/material-kit.css}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons.css}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/extras/animate.css}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{/extras/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/extras/owl.theme.css}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" th:href="@{/extras/settings.css}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" th:href="@{/css/slicknav.css}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/red.css}" media="screen" />
+    <title>Happy Programming</title>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Modal (background) */
+        .modalBtn{
+            background-color: #FF4F57;
+
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            height: fit-content;
+            line-height: 1.8;
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        form {
+            text-align: center;
+            width: 100%;
+        }
+        form input{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<!-- Header Section Start -->
+<div class="header">
+    <div class="logo-menu">
+        <div class="main-navigation" th:insert="~{/components/navbar :: navbar1}"></div>
+
+        <!-- Off Canvas Navigation -->
+        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+            <!--- Off Canvas Side Menu -->
+            <div class="close" data-toggle="offcanvas" data-target=".navmenu">
+                <i class="ti-close"></i>
+            </div>
+            <h3 class="title-menu">All Pages</h3>
+            <ul class="nav navmenu-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index-02.html">Home Page 2</a></li>
+                <li><a href="index-03.html">Home Page 3</a></li>
+                <li><a href="index-04.html">Home Page 4</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="job-page.html">Job Page</a></li>
+                <li><a href="job-details.html">Job Details</a></li>
+                <li><a href="resume.html">Resume Page</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="pricing.html">Pricing Tables</a></li>
+                <li><a href="browse-jobs.html">Browse Jobs</a></li>
+                <li><a href="browse-categories.html">Browse Categories</a></li>
+                <li><a href="add-resume.html">Add Resume</a></li>
+                <li><a href="manage-resumes.html">Manage Resumes</a></li>
+                <li><a href="job-alerts.html">Job Alerts</a></li>
+                <li><a href="post-job.html">Add Job</a></li>
+                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                <li><a href="manage-applications.html">Manage Applications</a></li>
+                <li><a href="browse-resumes.html">Browse Resumes</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="my-account.html">Login</a></li>
+            </ul><!--- End Menu -->
+        </div> <!--- End Off Canvas Side Menu -->
+        <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms"
+             data-toggle="offcanvas" data-target=".navmenu">
+            <p><i class="ti-files"></i> All Pages</p>
+        </div>
+    </div>
+</div>
+<div class="page-header purchase" data-stellar-background-ratio="0.5" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title " style="color: #ff6470">Request for you / Waiting request</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header Section End -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <th:block th:insert="~{/components/inner-box :: inner-box}"></th:block>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="job-alerts-item candidates">
+                    <h3 class="alerts-title">Waiting requests</h3>
+                    <button onclick="draw()">Statistic requests</button>
+                    <div class="alerts-list">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Title</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Budget</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Content</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>Actions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <th:block th:each="item : ${listWaitingRequest}">
+                        <div class="alerts-content" >
+                            <div class="row" >
+                                <div class="col-md-3" >
+                                    <a th:href="@{/request-detail(id=*{item.id})}"><h3 th:utext="${item.getTitle()}"></h3></a>
+                                    <span><i class="ti-location-pin" th:utext="${item.getDeliveryTime()}"></i></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><span class="full-time" th:utext="${item.budget}"></span></p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p><span th:text="${item.getContent()}"></span></p>
+                                </div>
+                                <div class="col-md-3">
+                                    <button id="myBtn">Reject</button>
+                                    <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <form th:action="@{/reject}" th:method="POST">
+                                                <h3>Give a response</h3>
+                                                <input  type="hidden" th:name ="id" th:value="${item.id}"/>
+                                                <input cols="30" rows="3"class="form-control"  th:name ="response" placeholder="Do you want to reject this request? Give the mentee some words"/>
+                                                <br><input class="btn btn-primary" type="submit"  th:value="Reject"/>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <button id="myBtn2">Approved</button>
+                                    <div id="myModal2" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <form th:action="@{/approve}" th:method="POST">
+                                                <h3>Give a response</h3>
+                                                <input  type="hidden" th:name ="id" th:value="${item.id}"/>
+                                                <input cols="30" rows="3" class="form-control"  th:name ="response" placeholder="Do you approve this request? give the mentee some words"/>
+                                                <br><input class="btn btn-primary" type="submit" th:value="Approve"/>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                    <br>
+                    <!--                    Paging-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<th:block th:insert="~{/components/footer :: footer}"></th:block>
+<script th:inline="javascript">
+    function draw() {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Statistic invited requests"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##.##\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: [{
+                    y: [[${l1}]],
+                    label: "Waiting"
+                }, {
+                    y: [[${l2}]],
+                    label: "Rejected"
+                }, {
+                    y: [[${l3}]],
+                    label: "Approved"
+                }]
+            }]
+        });
+        chart.render();
+
+    }
+</script>
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+
+    var modal2 = document.getElementById("myModal2");
+
+    // Get the button that opens the modal
+    var btn2 = document.getElementById("myBtn2");
+
+    // When the user clicks the button, open the modal
+    btn2.onclick = function() {
+        modal2.style.display = "block";
+    }
+
+    var span2 = document.getElementsByClassName("close")[1];
+    span2.onclick = function() {
+        modal2.style.display = "none";
+    }
+</script>
+<!-- Footer Section Start -->
+
+<!-- Footer Section End -->
+<a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+</a>
+
+<!-- Main JS  -->
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material-kit.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.parallax.js}"></script>
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.slicknav.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.counterup.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jasny-bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/form-validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/contact-form-script.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.revolution.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.tools.min.js}"></script>
+</body>
+</html>

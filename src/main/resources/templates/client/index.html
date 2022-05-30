@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="Jobboard">
+
+    <title>Happy Programming</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/css/jasny-bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" th:href="@{/css/material-kit.css}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons.css}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" th:href="@{/extras/animate.css}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" th:href="@{/extras/owl.carousel.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/extras/owl.theme.css}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" th:href="@{/extras/settings.css}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" th:href="@{/css/slicknav.css}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/colors/red.css}" media="screen"/>
+
+</head>
+<body onload="loadData()">
+
+<div class="header">
+    <!-- Start intro section -->
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+            <!-- Header Section End -->
+            <th:block th:insert="~{/components/navbar :: navbar1}"></th:block>
+            <div class="search-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Find the mentor that fits your request</h1><br>
+                            <h2>More than <strong>12,000</strong> mentors are waiting to help you!</h2>
+                            <div class="content" style="width: 78%">
+                                <form method="" action="" th:object="${listSkillForSearch}">
+                                    <div class="row" >
+                                        <div class="col-md-6 col-sm-6" style="width: 90%">
+                                            <div class="search-category-container">
+                                                <label class="styled-select">
+                                                    <select class="dropdown-product selectpicker"
+                                                            th:field="${listSkillForSearch}">
+                                                        <option th:each="skill : ${listSkill}" th:value="${skill.id}"
+                                                                th:utext="${skill.skillName}"></option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 col-sm-6">
+                                            <button type="button" class="btn btn-search-icon"><i class="ti-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="popular-jobs">
+                                <b>Popular Keywords: </b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end intro section  -->
+</div>
+<section class="find-job section">
+    <div class="container">
+        <h2 class="section-title">Mentor of month</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <th:block th:each="mentor : ${listMentor}">
+                    <div class="job-list" style="width: 100%">
+                        <div class="thumb">
+                            <a href="#"><img class="img-rounded image" th:src="@{*{mentor.user.avatar}}"
+                                             alt="User's avatar"></a>
+                            <p th:utext="*{mentor.user.fullName}"></p>
+                        </div>
+                        <div class="job-list-content">
+                            <h4>
+                                <a href="#" th:utext="*{mentor.title}"></a>
+                                <span class="full-time" th:each="skill : *{mentor.skills}"
+                                      th:utext="*{skill.skillName}"></span>
+                            </h4>
+                            <p th:utext="*{mentor.introduction}"></p>
+                            <div class="job-tag">
+                                <div class="pull-left">
+                                    <div class="meta-tag">
+                                        <span><a th:href="${mentor.socialMediaContact}"><i class="ti-facebook"></i></a></span>
+                                        <span><a th:href="${mentor.socialMediaContact}"><i
+                                                class="ti-github"></i></a></span>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="icon">
+                                        <span class="fa-star fa " style="color: #f5be47" th:utext="${mentor.getAverageStar()}"> </span>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ti-heart"></i>
+                                    </div>
+                                    <a th:href="@{/mentor-detail(id=${mentor.id},recommend=false)}"
+                                       class="btn btn-common btn-rm">More
+                                        Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </th:block>
+            </div>
+            <div class="col-md-12">
+                <ul class="pagination pull-right">
+                    <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+                    <li class="page-item" th:each="pageNumber : ${pageNumbers}"
+                        th:classappend="${pageNumber==currentPage}?active">
+                        <a class="page-link" th:href="@{/home(pageNumber=${pageNumber})}" th:text="${pageNumber}">1</a>
+                    </li>
+                    <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Client Section End -->
+<section class="category section">
+    <div class="container">
+        <h2 class="section-title">Language Categories</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category" th:each="listPopularSkill,stat : ${popularSkill}" th:unless="${stat.index>7}">
+                    <a th:href="@{/mentor/search-by-skill(id=${listPopularSkill.getSkillId()})}">
+                        <div class="icon" >
+                            <img th:src="@{*{listPopularSkill.getSkillImg()}}" style="width: 30%; height: 30%;">
+                        </div>
+                        <h3 th:utext="*{listPopularSkill.getSkillName()}"></h3>
+                        <p th:utext="*{listPopularSkill.getCount()}"></p>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Counter Section Start -->
+<section id="counter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-briefcase"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Jobs</h2>
+                        <h1 class="counter">12050</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-user"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Members</h2>
+                        <h1 class="counter">10890</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-write"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Resume</h2>
+                        <h1 class="counter">700</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="counting">
+                    <div class="icon">
+                        <i class="ti-heart"></i>
+                    </div>
+                    <div class="desc">
+                        <h2>Company</h2>
+                        <h1 class="counter">9050</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Counter Section End -->
+
+<!-- Infobox Section Start -->
+<section class="infobox section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="info-text">
+                    <h2>Don't Want To Miss a Thing?</h2>
+                    <p>Just go to <a href="#">Google Play</a> to download JobBoard Mini</p>
+                </div>
+                <a href="#" class="btn btn-border">Google Play</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Infobox Section End -->
+
+<!-- Footer Section Start -->
+<th:block th:insert="~{/components/footer :: footer}"></th:block>
+<th:block th:insert="~{/components/notification :: notification}"></th:block>
+<!-- Footer Section End -->
+
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+</a>
+
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Main JS  -->
+<script type="text/javascript" th:src="@{/js/jquery-min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/material-kit.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.parallax.js}"></script>
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.slicknav.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.counterup.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/waypoints.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jasny-bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-select.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/form-validator.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/contact-form-script.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.revolution.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.themepunch.tools.min.js}"></script>
+</body>
+</html>

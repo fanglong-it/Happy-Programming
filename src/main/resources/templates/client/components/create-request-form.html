@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="content" class="my-account" th:fragment="create-request-form">
+    <div class="container">
+        <div class="row"  >
+            <div class="col-sm-12 col-md-9 col-md-offset-2">
+                <div class="job-alerts-item" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;" th:fragment="create-request-form-inside">
+                    <h3 class="alerts-title">Create request</h3>
+                    <form class="form" th:method="POST" th:action="@{/create-request(recommend=${recommend})}" th:object="${requestForm}">
+                        <div class="form-group is-empty">
+                            <label class="control-label">Title *</label>
+                            <input th:field="*{title}" class="form-control" type="text" name="title"
+                                   placeholder="I am looking for...">
+                            <span class="material-input"></span>
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Once you place your order, when would you like your service
+                                delivered (DAY)?*</label>
+                            <input th:field="*{deliveryTime}" id="deliveryTime" onchange="deliveredTimeVerify()"
+                                   class="form-control" type="text" name="deliveredTime"
+                                   placeholder="Enter number of days">
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">What is your budget for this service($)?*</label>
+                            <input th:field="*{budget}" style="width: 30%" id="budget" onchange="budgetVerify()"
+                                   class="form-control" type="text" name="budget" placeholder="Your budget is">
+                        </div>
+
+                        <div class="form-group is-empty">
+                            <label class="control-label">Content *</label>
+                            <textarea th:field="*{content}" name="content" id="editor" cols="30" rows="30"
+                                      placeholder="My requests are..."></textarea>
+                            <span class="material-input"></span>
+                            <span class="material-input"></span>
+                        </div>
+                        <div class="form-group is-empty">
+                            <label class="control-label">Programming Language(Framework) *</label>
+                            <select multiple="multiple" name="skill" class="form-control" th:field="*{skills}">
+                                <option th:each="listSkills : ${listSkill}" th:value="${listSkills.getId()}"
+                                        th:utext="${listSkills.getSkillName()}"></option>
+                            </select>
+                            <input type="hidden" th:if="${recommend==false}" th:name="mentorId" th:value="${mentorId}">
+                            <span class="material-input"></span>
+                            <span class="material-input"></span></div>
+                        <button type="submit" class="btn btn-common">OK</button>
+                        <input value="0" type="hidden"  data-glyphicon="0">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
